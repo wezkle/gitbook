@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import Toolbar from './components/Toolbar'
+import ModernToolbar from './components/ModernToolbar'
+import StatusBar from './components/StatusBar'
 
 function App() {
   const [activeTab, setActiveTab] = useState('home')
@@ -16,8 +17,11 @@ function App() {
         </div>
       </div>
 
-      {/* Toolbar */}
-      <Toolbar />
+      {/* Modern Toolbar */}
+      <ModernToolbar />
+
+      {/* Status Bar */}
+      <StatusBar />
 
       {/* Content */}
       <div className="relative z-10">
