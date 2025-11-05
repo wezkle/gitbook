@@ -1,380 +1,487 @@
+import { useState } from 'react'
+
 function App() {
+  const [activeTab, setActiveTab] = useState('home')
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-blue-900 to-blue-800 shadow-lg sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4">
-          <nav className="flex flex-col lg:flex-row justify-between items-center gap-4">
-            <div className="flex items-center space-x-4">
-              <div className="bg-white p-3 rounded-lg shadow">
-                <span className="text-blue-900 text-2xl font-bold">DHPP</span>
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-black to-red-950"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Header */}
+        <header className="backdrop-blur-md bg-black/30 border-b border-blue-500/30 sticky top-0 z-50">
+          <nav className="container mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-blue-500 blur-xl opacity-50 animate-pulse"></div>
+                  <div className="relative bg-gradient-to-br from-blue-500 to-blue-700 p-4 rounded-lg transform hover:scale-110 transition-all duration-300">
+                    <span className="text-2xl font-black">DHPP</span>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-blue-400 uppercase tracking-wider">Servidor RP</div>
+                  <div className="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    Departamento de Polícia
+                  </div>
+                </div>
               </div>
-              <div className="text-white">
-                <div className="text-xs font-light uppercase">Polícia Civil do Estado de São Paulo</div>
-                <div className="text-base lg:text-lg font-bold">Departamento de Homicídios e Proteção à Pessoa</div>
+
+              <div className="hidden lg:flex items-center space-x-1">
+                {['Home', 'Cursos', 'Atuação', 'Hierarquia', 'Recrutamento', 'Galeria'].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => setActiveTab(item.toLowerCase())}
+                    className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                      activeTab === item.toLowerCase()
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-500 shadow-lg shadow-blue-500/50'
+                        : 'hover:bg-white/10'
+                    }`}
+                  >
+                    {item}
+                  </button>
+                ))}
               </div>
-            </div>
-            <div className="flex flex-wrap items-center gap-4 lg:gap-6">
-              <a href="#sobre" className="text-white hover:text-yellow-300 transition font-medium text-sm lg:text-base">Sobre</a>
-              <a href="#atuacao" className="text-white hover:text-yellow-300 transition font-medium text-sm lg:text-base">Atuação</a>
-              <a href="#denuncie" className="text-white hover:text-yellow-300 transition font-medium text-sm lg:text-base">Denuncie</a>
-              <a href="#contato" className="text-white hover:text-yellow-300 transition font-medium text-sm lg:text-base">Contato</a>
-              <a href="tel:190" className="bg-red-600 text-white px-6 py-2 rounded font-bold hover:bg-red-700 transition shadow-lg">
-                🚨 190
+
+              <a href="#aplicar" className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 blur-lg opacity-75 group-hover:opacity-100 transition-opacity"></div>
+                <button className="relative bg-gradient-to-r from-red-600 to-orange-600 px-6 py-3 rounded-lg font-bold shadow-xl transform group-hover:scale-105 transition-all">
+                  🚨 APLICAR AGORA
+                </button>
               </a>
             </div>
           </nav>
-        </div>
-      </header>
+        </header>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-gray-900 text-white py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              Protegendo Vidas,
-              <span className="block text-yellow-400">Buscando Justiça</span>
-            </h1>
-            <p className="text-xl lg:text-2xl mb-8 text-blue-100">
-              O DHPP da Polícia Civil de São Paulo atua na investigação de crimes dolosos contra a vida 
-              e na proteção de pessoas ameaçadas, trabalhando incansavelmente pela segurança do cidadão.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#denuncie" className="bg-yellow-500 text-gray-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-400 transition shadow-xl">
-                Fazer uma Denúncia
-              </a>
-              <a href="#contato" className="border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-900 transition">
-                Fale Conosco
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Alerta Importante */}
-      <section className="bg-red-600 text-white py-4">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-lg font-bold">
-            ⚠️ Em caso de emergência, ligue imediatamente para <a href="tel:190" className="underline hover:text-yellow-300">190</a> (Polícia Militar)
-          </p>
-        </div>
-      </section>
-
-      {/* Sobre o DHPP */}
-      <section id="sobre" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
-              Sobre o DHPP
-            </h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mb-12"></div>
-            
-            <div className="bg-blue-50 border-l-4 border-blue-600 p-8 mb-8 rounded-r-lg">
-              <p className="text-lg text-gray-800 leading-relaxed">
-                O <strong>Departamento Estadual de Homicídios e de Proteção à Pessoa (DHPP)</strong> da Polícia Civil de São Paulo 
-                é o órgão responsável por investigar crimes dolosos contra a vida, como homicídios, tentativas de homicídio e latrocínios.
-              </p>
-            </div>
-
-            <p className="text-lg text-gray-700 leading-relaxed mb-6">
-              Subordinado à Delegacia-Geral da Polícia Civil, o departamento conta com equipes especializadas, peritos e 
-              investigadores que utilizam recursos tecnológicos e métodos avançados de investigação disponíveis na 
-              <strong> Brasilândia</strong> para esclarecer casos complexos.
-            </p>
-
-            <p className="text-lg text-gray-700 leading-relaxed mb-8">
-              Além de apurar mortes violentas, o DHPP também atua na <strong>proteção de pessoas ameaçadas</strong> e na 
-              coordenação de operações conjuntas com outras unidades policiais. Sua estrutura é voltada para garantir 
-              eficiência, precisão e agilidade na coleta de provas e na identificação de autores de crimes, contribuindo 
-              diretamente para a <strong>redução da impunidade</strong> e o fortalecimento da segurança pública no estado.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
-              <div className="text-center">
-                <div className="text-5xl font-bold text-blue-600 mb-2">24/7</div>
-                <div className="text-gray-600">Atendimento Contínuo</div>
+        {/* Hero Section */}
+        {activeTab === 'home' && (
+          <section className="min-h-screen flex items-center justify-center px-6 py-20">
+            <div className="text-center max-w-5xl">
+              <div className="mb-8 animate-fade-in">
+                <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+                  🎮 Servidor de Roleplay
+                </span>
               </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold text-blue-600 mb-2">100%</div>
-                <div className="text-gray-600">Compromisso com Justiça</div>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold text-blue-600 mb-2">SP</div>
-                <div className="text-gray-600">Todo o Estado</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              
+              <h1 className="text-6xl lg:text-8xl font-black mb-6 leading-tight animate-slide-up">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  BEM-VINDO AO
+                </span>
+                <br />
+                <span className="text-white drop-shadow-2xl">DHPP</span>
+              </h1>
 
-      {/* Áreas de Atuação */}
-      <section id="atuacao" className="py-20 bg-gray-100">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
-            Áreas de Atuação
-          </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-12"></div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-              <div className="text-4xl mb-4">🔍</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Homicídios</h3>
-              <p className="text-gray-600">
-                Investigação completa de casos de homicídio doloso com uso de técnicas avançadas de perícia e investigação.
+              <p className="text-xl lg:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto animate-fade-in">
+                O departamento mais elite do servidor. Junte-se aos melhores policiais 
+                e viva experiências únicas de roleplay de alta qualidade.
               </p>
-            </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-              <div className="text-4xl mb-4">⚖️</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Tentativa de Homicídio</h3>
-              <p className="text-gray-600">
-                Apuração de tentativas de homicídio e crimes graves contra a integridade física das vítimas.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-              <div className="text-4xl mb-4">💰</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Latrocínio</h3>
-              <p className="text-gray-600">
-                Investigação de roubos seguidos de morte, combinando análise patrimonial e de crimes contra a vida.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-              <div className="text-4xl mb-4">🛡️</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Proteção à Pessoa</h3>
-              <p className="text-gray-600">
-                Programas de proteção para testemunhas, vítimas e pessoas ameaçadas de morte.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-              <div className="text-4xl mb-4">🔬</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Perícia Criminal</h3>
-              <p className="text-gray-600">
-                Análise científica de evidências e provas materiais para elucidação dos crimes.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-              <div className="text-4xl mb-4">🤝</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">Operações Conjuntas</h3>
-              <p className="text-gray-600">
-                Coordenação com outras unidades policiais para operações complexas e de grande porte.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Como Denunciar */}
-      <section id="denuncie" className="py-20 bg-blue-900 text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-4">
-              Como Fazer uma Denúncia
-            </h2>
-            <div className="w-20 h-1 bg-yellow-400 mx-auto mb-12"></div>
-
-            <div className="bg-blue-800 p-8 rounded-lg mb-8">
-              <h3 className="text-2xl font-bold mb-4 text-yellow-400">Sua denúncia pode salvar vidas</h3>
-              <p className="text-lg mb-4">
-                Se você possui informações sobre crimes contra a vida ou conhece alguém em situação de ameaça, 
-                denuncie. Todas as informações serão tratadas com sigilo e responsabilidade.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white text-gray-900 p-6 rounded-lg">
-                <h4 className="font-bold text-xl mb-3 text-blue-900">📞 Por Telefone</h4>
-                <p className="mb-2"><strong>Emergência:</strong> 190 (Polícia Militar)</p>
-                <p className="mb-2"><strong>Disque Denúncia:</strong> 181</p>
-                <p className="text-sm text-gray-600">Atendimento 24 horas, todos os dias</p>
-              </div>
-
-              <div className="bg-white text-gray-900 p-6 rounded-lg">
-                <h4 className="font-bold text-xl mb-3 text-blue-900">🏢 Presencial</h4>
-                <p className="mb-2"><strong>DHPP - Brasilândia</strong></p>
-                <p className="mb-2">Compareça à unidade mais próxima</p>
-                <p className="text-sm text-gray-600">De segunda a sexta, das 9h às 18h</p>
-              </div>
-
-              <div className="bg-white text-gray-900 p-6 rounded-lg">
-                <h4 className="font-bold text-xl mb-3 text-blue-900">💻 Online</h4>
-                <p className="mb-2">Delegacia Eletrônica da Polícia Civil</p>
-                <p className="mb-2"><a href="https://www.delegaciaeletronica.policiacivil.sp.gov.br" className="text-blue-600 underline hover:text-blue-800">www.delegaciaeletronica.sp.gov.br</a></p>
-                <p className="text-sm text-gray-600">Disponível 24 horas</p>
-              </div>
-
-              <div className="bg-white text-gray-900 p-6 rounded-lg">
-                <h4 className="font-bold text-xl mb-3 text-blue-900">✉️ Por E-mail</h4>
-                <p className="mb-2">dhpp.brasilandia@policiacivil.sp.gov.br</p>
-                <p className="text-sm text-gray-600">Resposta em até 48 horas úteis</p>
-              </div>
-            </div>
-
-            <div className="mt-8 bg-yellow-500 text-gray-900 p-6 rounded-lg">
-              <h4 className="font-bold text-xl mb-2">⚠️ Importante</h4>
-              <ul className="list-disc list-inside space-y-2">
-                <li>Denúncias anônimas são aceitas</li>
-                <li>Forneça o máximo de detalhes possível</li>
-                <li>Em caso de emergência, ligue 190 imediatamente</li>
-                <li>Todas as informações são sigilosas</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contato */}
-      <section id="contato" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
-              Contato e Localização
-            </h2>
-            <div className="w-20 h-1 bg-blue-600 mx-auto mb-12"></div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-900">DHPP - Brasilândia</h3>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up">
+                <a href="#aplicar" className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 blur-xl opacity-75 group-hover:opacity-100 transition-opacity"></div>
+                  <button className="relative bg-gradient-to-r from-blue-600 to-purple-600 px-10 py-5 rounded-xl font-bold text-xl shadow-2xl transform group-hover:scale-105 transition-all">
+                    🎯 COMEÇAR AGORA
+                  </button>
+                </a>
                 
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="text-2xl">📍</div>
-                    <div>
-                      <p className="font-bold">Endereço:</p>
-                      <p className="text-gray-700">Brasilândia, São Paulo - SP</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <div className="text-2xl">📞</div>
-                    <div>
-                      <p className="font-bold">Telefone:</p>
-                      <p className="text-gray-700">Emergência: 190</p>
-                      <p className="text-gray-700">Disque Denúncia: 181</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <div className="text-2xl">✉️</div>
-                    <div>
-                      <p className="font-bold">E-mail:</p>
-                      <p className="text-gray-700">dhpp.brasilandia@policiacivil.sp.gov.br</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-3">
-                    <div className="text-2xl">🕐</div>
-                    <div>
-                      <p className="font-bold">Horário de Atendimento:</p>
-                      <p className="text-gray-700">Segunda a Sexta: 9h às 18h</p>
-                      <p className="text-gray-700">Emergências: 24 horas (ligue 190)</p>
-                    </div>
-                  </div>
-                </div>
+                <button onClick={() => setActiveTab('atuação')} className="backdrop-blur-md bg-white/10 border-2 border-white/30 px-10 py-5 rounded-xl font-bold text-xl hover:bg-white/20 transition-all transform hover:scale-105">
+                  📋 VER ATUAÇÃO
+                </button>
               </div>
 
-              <div className="bg-gray-100 p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4 text-blue-900">Links Úteis</h3>
-                <ul className="space-y-3">
-                  <li>
-                    <a href="https://www.policiacivil.sp.gov.br" className="text-blue-600 hover:text-blue-800 hover:underline flex items-center space-x-2">
-                      <span>🔗</span>
-                      <span>Polícia Civil de São Paulo</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.ssp.sp.gov.br" className="text-blue-600 hover:text-blue-800 hover:underline flex items-center space-x-2">
-                      <span>🔗</span>
-                      <span>Secretaria de Segurança Pública</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.delegaciaeletronica.policiacivil.sp.gov.br" className="text-blue-600 hover:text-blue-800 hover:underline flex items-center space-x-2">
-                      <span>🔗</span>
-                      <span>Delegacia Eletrônica</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.gov.br/mdh/pt-br" className="text-blue-600 hover:text-blue-800 hover:underline flex items-center space-x-2">
-                      <span>🔗</span>
-                      <span>Ministério dos Direitos Humanos</span>
-                    </a>
-                  </li>
+              <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto mt-20">
+                <div className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all transform hover:scale-105">
+                  <div className="text-4xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                    150+
+                  </div>
+                  <div className="text-gray-400">Membros Ativos</div>
+                </div>
+                
+                <div className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all transform hover:scale-105">
+                  <div className="text-4xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">
+                    24/7
+                  </div>
+                  <div className="text-gray-400">Operações</div>
+                </div>
+                
+                <div className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all transform hover:scale-105">
+                  <div className="text-4xl font-black bg-gradient-to-r from-pink-400 to-red-400 bg-clip-text text-transparent mb-2">
+                    #1
+                  </div>
+                  <div className="text-gray-400">no Servidor</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Cursos Section */}
+        {activeTab === 'cursos' && (
+          <section className="min-h-screen py-20 px-6">
+            <div className="container mx-auto max-w-7xl">
+              <div className="text-center mb-16">
+                <h2 className="text-5xl lg:text-6xl font-black mb-4">
+                  <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    CURSOS & TREINAMENTOS
+                  </span>
+                </h2>
+                <p className="text-xl text-gray-400">Capacitação profissional de alto nível</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { icon: '🎯', title: 'Academia de Polícia', desc: 'Treinamento básico obrigatório para todos os recrutas', duration: '2 semanas', vagas: 'Abertas' },
+                  { icon: '🔫', title: 'Tiro Tático', desc: 'Especialização em combate armado e precisão', duration: '1 semana', vagas: 'Limitadas' },
+                  { icon: '🚗', title: 'Pilotagem Avançada', desc: 'Técnicas de perseguição e direção defensiva', duration: '1 semana', vagas: 'Abertas' },
+                  { icon: '🎖️', title: 'Operações Especiais', desc: 'Treinamento SWAT para situações críticas', duration: '3 semanas', vagas: 'Fechadas' },
+                  { icon: '🔍', title: 'Investigação Criminal', desc: 'Métodos de investigação e coleta de provas', duration: '2 semanas', vagas: 'Abertas' },
+                  { icon: '⚖️', title: 'Legislação e Direito', desc: 'Conhecimento das leis do servidor', duration: '1 semana', vagas: 'Abertas' },
+                ].map((curso, index) => (
+                  <div key={index} className="group relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-75 transition-opacity"></div>
+                    <div className="relative backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all transform hover:scale-105">
+                      <div className="text-6xl mb-4">{curso.icon}</div>
+                      <h3 className="text-2xl font-bold mb-3">{curso.title}</h3>
+                      <p className="text-gray-400 mb-4">{curso.desc}</p>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="text-sm text-blue-400">⏱️ {curso.duration}</span>
+                        <span className={`text-sm px-3 py-1 rounded-full ${
+                          curso.vagas === 'Abertas' 
+                            ? 'bg-green-500/20 text-green-400' 
+                            : curso.vagas === 'Limitadas'
+                            ? 'bg-yellow-500/20 text-yellow-400'
+                            : 'bg-red-500/20 text-red-400'
+                        }`}>
+                          {curso.vagas}
+                        </span>
+                      </div>
+                      <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 py-3 rounded-lg font-bold hover:shadow-lg hover:shadow-blue-500/50 transition-all">
+                        INSCREVER-SE
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Atuação Section */}
+        {activeTab === 'atuação' && (
+          <section className="min-h-screen py-20 px-6">
+            <div className="container mx-auto max-w-7xl">
+              <div className="text-center mb-16">
+                <h2 className="text-5xl lg:text-6xl font-black mb-4">
+                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    ÁREAS DE ATUAÇÃO
+                  </span>
+                </h2>
+                <p className="text-xl text-gray-400">Especializações e divisões do departamento</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {[
+                  { 
+                    icon: '🚔', 
+                    title: 'Patrulha Ostensiva', 
+                    desc: 'Policiamento preventivo nas ruas da cidade',
+                    features: ['Rondas 24/7', 'Atendimento de ocorrências', 'Abordagens táticas']
+                  },
+                  { 
+                    icon: '🎯', 
+                    title: 'SWAT / BOPE', 
+                    desc: 'Operações táticas e situações de alto risco',
+                    features: ['Resgates de reféns', 'Neutralização de ameaças', 'Operações especiais']
+                  },
+                  { 
+                    icon: '🔍', 
+                    title: 'Investigação', 
+                    desc: 'Departamento de investigação criminal',
+                    features: ['Crimes graves', 'Operações undercover', 'Inteligência policial']
+                  },
+                  { 
+                    icon: '🚁', 
+                    title: 'Suporte Aéreo', 
+                    desc: 'Helicópteros para operações táticas',
+                    features: ['Perseguições aéreas', 'Reconhecimento', 'Transporte tático']
+                  },
+                  { 
+                    icon: '🚓', 
+                    title: 'Trânsito', 
+                    desc: 'Fiscalização e controle de tráfego',
+                    features: ['Blitzes', 'Controle de velocidade', 'Acidentes de trânsito']
+                  },
+                  { 
+                    icon: '🎖️', 
+                    title: 'Comando e Controle', 
+                    desc: 'Coordenação de operações e gestão',
+                    features: ['Planejamento estratégico', 'Supervisão', 'Recursos humanos']
+                  },
+                ].map((area, index) => (
+                  <div key={index} className="group relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-0 group-hover:opacity-75 transition-opacity"></div>
+                    <div className="relative backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all">
+                      <div className="flex items-start space-x-6">
+                        <div className="text-6xl">{area.icon}</div>
+                        <div className="flex-1">
+                          <h3 className="text-3xl font-bold mb-3">{area.title}</h3>
+                          <p className="text-gray-400 mb-6">{area.desc}</p>
+                          <ul className="space-y-2">
+                            {area.features.map((feature, i) => (
+                              <li key={i} className="flex items-center space-x-2 text-sm text-gray-300">
+                                <span className="text-blue-400">✓</span>
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Hierarquia Section */}
+        {activeTab === 'hierarquia' && (
+          <section className="min-h-screen py-20 px-6">
+            <div className="container mx-auto max-w-5xl">
+              <div className="text-center mb-16">
+                <h2 className="text-5xl lg:text-6xl font-black mb-4">
+                  <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                    HIERARQUIA POLICIAL
+                  </span>
+                </h2>
+                <p className="text-xl text-gray-400">Estrutura de comando do departamento</p>
+              </div>
+
+              <div className="space-y-4">
+                {[
+                  { rank: 'Chefe de Polícia', icon: '⭐⭐⭐⭐⭐', color: 'from-yellow-500 to-orange-500' },
+                  { rank: 'Superintendente', icon: '⭐⭐⭐⭐', color: 'from-orange-500 to-red-500' },
+                  { rank: 'Comandante', icon: '⭐⭐⭐', color: 'from-red-500 to-pink-500' },
+                  { rank: 'Capitão', icon: '⭐⭐', color: 'from-purple-500 to-blue-500' },
+                  { rank: 'Tenente', icon: '⭐', color: 'from-blue-500 to-cyan-500' },
+                  { rank: 'Sargento', icon: '🔷', color: 'from-cyan-500 to-blue-400' },
+                  { rank: 'Cabo', icon: '🔹', color: 'from-blue-400 to-blue-300' },
+                  { rank: 'Soldado', icon: '🔸', color: 'from-gray-400 to-gray-500' },
+                  { rank: 'Recruta', icon: '⚪', color: 'from-gray-500 to-gray-600' },
+                ].map((posto, index) => (
+                  <div key={index} className="group relative">
+                    <div className={`absolute inset-0 bg-gradient-to-r ${posto.color} rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity`}></div>
+                    <div className="relative backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all flex items-center justify-between">
+                      <div className="flex items-center space-x-6">
+                        <div className={`text-4xl bg-gradient-to-r ${posto.color} p-4 rounded-lg`}>
+                          {posto.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-2xl font-bold">{posto.rank}</h3>
+                          <p className="text-sm text-gray-400">Nível {9 - index}</p>
+                        </div>
+                      </div>
+                      <div className={`bg-gradient-to-r ${posto.color} px-6 py-2 rounded-full font-bold text-sm`}>
+                        {index === 0 ? 'COMANDO' : index < 4 ? 'OFICIAL' : 'PRAÇA'}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Recrutamento Section */}
+        {activeTab === 'recrutamento' && (
+          <section className="min-h-screen py-20 px-6">
+            <div className="container mx-auto max-w-4xl">
+              <div className="text-center mb-16">
+                <h2 className="text-5xl lg:text-6xl font-black mb-4">
+                  <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                    RECRUTAMENTO ABERTO
+                  </span>
+                </h2>
+                <p className="text-xl text-gray-400">Faça parte da elite policial</p>
+              </div>
+
+              <div className="backdrop-blur-md bg-white/5 border border-white/10 p-10 rounded-2xl">
+                <h3 className="text-3xl font-bold mb-8">📋 REQUISITOS</h3>
+                
+                <div className="space-y-4 mb-10">
+                  {[
+                    'Mínimo de 18 anos (In-Game)',
+                    'Ter microfone funcionando',
+                    'Disponibilidade mínima de 20h semanais',
+                    'Conhecimento básico das regras do servidor',
+                    'Ficha limpa (sem histórico criminal grave)',
+                    'Passar no teste psicológico',
+                    'Completar a academia de polícia'
+                  ].map((req, index) => (
+                    <div key={index} className="flex items-center space-x-4 text-lg">
+                      <div className="bg-gradient-to-r from-green-500 to-blue-500 p-2 rounded-full">
+                        <span className="text-white">✓</span>
+                      </div>
+                      <span>{req}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 p-6 rounded-xl mb-8">
+                  <h4 className="text-xl font-bold mb-4">🎯 PROCESSO SELETIVO</h4>
+                  <ol className="space-y-3 text-gray-300">
+                    <li><strong>1.</strong> Preencher formulário de aplicação</li>
+                    <li><strong>2.</strong> Entrevista com oficial recrutador</li>
+                    <li><strong>3.</strong> Teste de conhecimento das regras</li>
+                    <li><strong>4.</strong> Avaliação psicológica</li>
+                    <li><strong>5.</strong> Academia de polícia (2 semanas)</li>
+                    <li><strong>6.</strong> Aprovação e integração</li>
+                  </ol>
+                </div>
+
+                <div className="text-center">
+                  <a href="#" className="relative group inline-block">
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-blue-500 blur-xl opacity-75 group-hover:opacity-100 transition-opacity"></div>
+                    <button className="relative bg-gradient-to-r from-green-600 to-blue-600 px-12 py-5 rounded-xl font-bold text-xl shadow-2xl transform group-hover:scale-105 transition-all">
+                      🚨 APLICAR AGORA
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Galeria Section */}
+        {activeTab === 'galeria' && (
+          <section className="min-h-screen py-20 px-6">
+            <div className="container mx-auto max-w-7xl">
+              <div className="text-center mb-16">
+                <h2 className="text-5xl lg:text-6xl font-black mb-4">
+                  <span className="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
+                    GALERIA DE MOMENTOS
+                  </span>
+                </h2>
+                <p className="text-xl text-gray-400">Nossas melhores operações e conquistas</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
+                  <div key={index} className="group relative aspect-video overflow-hidden rounded-2xl">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-md border border-white/10 flex items-center justify-center hover:scale-105 transition-transform">
+                      <div className="text-center">
+                        <div className="text-6xl mb-4">
+                          {['🚔', '🚁', '🎖️', '🔫', '🚓', '⚖️', '🎯', '🔍', '👮'][index]}
+                        </div>
+                        <p className="text-lg font-bold">Operação #{item}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Footer */}
+        <footer className="backdrop-blur-md bg-black/50 border-t border-white/10 py-12">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-4 gap-8 mb-8">
+              <div>
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 p-3 rounded-lg">
+                    <span className="text-xl font-black">DHPP</span>
+                  </div>
+                </div>
+                <p className="text-gray-400 text-sm">
+                  O departamento mais elite do servidor de roleplay.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-bold mb-4">Links Rápidos</h4>
+                <ul className="space-y-2 text-gray-400 text-sm">
+                  <li><button onClick={() => setActiveTab('home')} className="hover:text-white transition">Home</button></li>
+                  <li><button onClick={() => setActiveTab('cursos')} className="hover:text-white transition">Cursos</button></li>
+                  <li><button onClick={() => setActiveTab('atuação')} className="hover:text-white transition">Atuação</button></li>
+                  <li><button onClick={() => setActiveTab('recrutamento')} className="hover:text-white transition">Recrutamento</button></li>
                 </ul>
+              </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-300">
-                  <h4 className="font-bold mb-2">Ouvidoria</h4>
-                  <p className="text-sm text-gray-700">Para elogios, críticas ou sugestões sobre os serviços do DHPP</p>
-                  <p className="text-blue-600 mt-2">📞 0800-xxx-xxxx</p>
+              <div>
+                <h4 className="font-bold mb-4">Contato RP</h4>
+                <ul className="space-y-2 text-gray-400 text-sm">
+                  <li>📞 190 (In-Game)</li>
+                  <li>📧 dhpp@servidor.com</li>
+                  <li>💬 Discord</li>
+                  <li>🎮 Servidor RP</li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="font-bold mb-4">Redes Sociais</h4>
+                <div className="flex space-x-3">
+                  <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-white/20 transition">📘</a>
+                  <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-white/20 transition">🎮</a>
+                  <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-white/20 transition">💬</a>
+                  <a href="#" className="bg-white/10 p-3 rounded-lg hover:bg-white/20 transition">📺</a>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="bg-white p-2 rounded inline-block mb-4">
-                <span className="text-blue-900 text-xl font-bold">DHPP</span>
-              </div>
-              <p className="text-gray-400 text-sm">
-                Departamento Estadual de Homicídios e de Proteção à Pessoa
-              </p>
-              <p className="text-gray-400 text-sm mt-2">
-                Polícia Civil do Estado de São Paulo
-              </p>
-            </div>
-            
-            <div>
-              <h5 className="font-bold mb-4">Institucional</h5>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#sobre" className="hover:text-white transition">Sobre o DHPP</a></li>
-                <li><a href="#atuacao" className="hover:text-white transition">Áreas de Atuação</a></li>
-                <li><a href="#" className="hover:text-white transition">Estrutura</a></li>
-                <li><a href="#" className="hover:text-white transition">Transparência</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h5 className="font-bold mb-4">Atendimento</h5>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#denuncie" className="hover:text-white transition">Como Denunciar</a></li>
-                <li><a href="#contato" className="hover:text-white transition">Contato</a></li>
-                <li><a href="tel:190" className="hover:text-white transition">Emergência 190</a></li>
-                <li><a href="tel:181" className="hover:text-white transition">Disque Denúncia 181</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h5 className="font-bold mb-4">Emergência</h5>
-              <div className="space-y-3">
-                <a href="tel:190" className="block bg-red-600 text-center py-3 rounded font-bold hover:bg-red-700 transition">
-                  🚨 190 - Polícia Militar
-                </a>
-                <a href="tel:181" className="block bg-yellow-600 text-center py-3 rounded font-bold hover:bg-yellow-700 transition">
-                  📞 181 - Disque Denúncia
-                </a>
-              </div>
+            <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-sm">
+              <p>&copy; 2025 DHPP - Departamento de Polícia RP. Todos os direitos reservados.</p>
+              <p className="mt-2">Este é um projeto de roleplay fictício</p>
             </div>
           </div>
-          
-          <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-gray-400 text-sm">
-              &copy; 2025 DHPP - Departamento Estadual de Homicídios e de Proteção à Pessoa
-            </p>
-            <p className="text-gray-500 text-xs mt-2">
-              Polícia Civil do Estado de São Paulo | Todos os direitos reservados
-            </p>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
+
+      <style jsx>{`
+        @keyframes blob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(30px, -50px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-fade-in {
+          animation: fade-in 1s ease-out;
+        }
+        @keyframes slide-up {
+          from { 
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-slide-up {
+          animation: slide-up 0.8s ease-out;
+        }
+      `}</style>
     </div>
   )
 }
