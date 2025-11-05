@@ -1,12 +1,16 @@
-# DHPP - Landing Page
+# DHPP - Departamento de Homicídios e Proteção à Pessoa
 
-Landing page moderna criada com Vite, React e Tailwind CSS.
+Site institucional do DHPP (Departamento Estadual de Homicídios e de Proteção à Pessoa) da Polícia Civil do Estado de São Paulo.
+
+## 📋 Sobre
+
+O DHPP é responsável por investigar crimes dolosos contra a vida, como homicídios, tentativas de homicídio e latrocínios, além de atuar na proteção de pessoas ameaçadas.
 
 ## 🚀 Tecnologias
 
 - **Vite** - Build tool super rápido
 - **React** - Biblioteca JavaScript para UI
-- **Tailwind CSS** - Framework CSS utility-first
+- **Tailwind CSS v4** - Framework CSS utility-first
 - **Vercel** - Deploy e hospedagem
 
 ## 📦 Instalação
@@ -42,6 +46,11 @@ npm i -g vercel
 vercel
 ```
 
+## 📞 Contatos de Emergência
+
+- **Emergência:** 190 (Polícia Militar)
+- **Disque Denúncia:** 181
+
 ## 📄 Licença
 
-MIT
+Este é um projeto institucional da Polícia Civil do Estado de São Paulo.
