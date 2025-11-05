@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Toolbar from './components/Toolbar'
 
 function App() {
   const [activeTab, setActiveTab] = useState('home')
@@ -14,6 +15,9 @@ function App() {
           <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
         </div>
       </div>
+
+      {/* Toolbar */}
+      <Toolbar />
 
       {/* Content */}
       <div className="relative z-10">
@@ -98,7 +102,7 @@ function App() {
                 </button>
               </div>
 
-              <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto mt-20">
+              <div id="stats" className="grid grid-cols-3 gap-8 max-w-3xl mx-auto mt-20">
                 <div className="backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 transition-all transform hover:scale-105">
                   <div className="text-4xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
                     150+
